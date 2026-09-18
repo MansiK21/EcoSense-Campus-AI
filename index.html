@@ -327,6 +327,54 @@
 <footer>
     © 2026 EcoSense Campus AI | Smart • Sustainable • Intelligent Campus
 </footer>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+  import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-analytics.js";
+  import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyC6Q-8o4pW1guLwi7aVNVzFecn6HnAjVgE",
+    authDomain: "ecosense-campus-ai.firebaseapp.com",
+    databaseURL: "https://ecosense-campus-ai-default-rtdb.firebaseio.com",
+    projectId: "ecosense-campus-ai",
+    storageBucket: "ecosense-campus-ai.firebasestorage.app",
+    messagingSenderId: "193563443755",
+    appId: "1:193563443755:web:96acb4b47482c1ee52e06e",
+    measurementId: "G-0LT60K9Y61"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+    const db = getDatabase(app);
+
+const sensorRef = ref(db, "campus/blockA/classroom101");
+
+onValue(sensorRef, (snapshot) => {
+    const data = snapshot.val();
+
+    if (data) {
+        document.getElementById("temperature").innerText = data.temperature ?? "--";
+        document.getElementById("humidity").innerText = data.humidity ?? "--";
+        document.getElementById("occupancy").innerText = data.occupancy ?? "--";
+    }
+});
+
+const sensorRef = ref(db, "campus/blockA/classroom101");
+
+onValue(sensorRef, (snapshot) => {
+    const data = snapshot.val();
+
+    if (data) {
+        console.log("Firebase Data:", data);
+    }
+});
+</script>
 </body>
 </html>
