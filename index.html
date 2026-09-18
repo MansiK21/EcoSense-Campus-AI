@@ -366,15 +366,7 @@ onValue(sensorRef, (snapshot) => {
     }
 });
 
-const sensorRef = ref(db, "campus/blockA/classroom101");
 
-onValue(sensorRef, (snapshot) => {
-    const data = snapshot.val();
-
-    if (data) {
-        console.log("Firebase Data:", data);
-    }
-});
 </script>
 </body>
 </html>
